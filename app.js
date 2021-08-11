@@ -142,17 +142,22 @@ app.use(compression());
 // --ROUTES--
 
 // Stripe API webhooks
+
 app.use(
     '/payments/checkout/stripe-webhook',
     express.raw({type: 'application/json'}),
     webhooksRouter
 );
-
 // API routes
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
+
+app.use('/api', (req, res) => {
+    res.status(200).json({status: 'success', message: 'Natours RestAPI is up and running!'})
+});
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
