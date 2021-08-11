@@ -4,7 +4,7 @@
   "description": "NodeJS, Express and MongoDB",
   "main": "app.js",
   "scripts": {
-    "start": "server.js",
+    "start": "node server.js",
     "start:prod": "SET NODE_ENV=production&&nodemon server.js",
     "debug": "ndb server.js",
     "debug:prod": "SET NODE_ENV=production&&ndb server.js",
