@@ -1,0 +1,48 @@
+{
+  "name": "natours-rest-api",
+  "version": "1.0.0",
+  "description": "NodeJS, Express and MongoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "start:prod": "SET NODE_ENV=production&&nodemon server.js",
+    "debug": "ndb server.js",
+    "debug:prod": "SET NODE_ENV=production&&ndb server.js",
+    "watch:js": "parcel watch --no-hmr ./public/js/index.js --out-dir ./public/js --public-url /js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+  },
+  "author": "Martin Metodiev",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@stripe/stripe-js": "^1.16.0",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.2.6",
+    "express-sanitize": "^1.0.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "html-to-text": "^8.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.9",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.6.0",
+    "pug": "^3.0.2",
+    "sharp": "^0.28.3",
+    "slugify": "^1.5.3",
+    "stripe": "^8.167.0",
+    "validator": "^13.6.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "parcel-bundler": "^1.12.5"
+  }
+}
