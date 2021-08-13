@@ -44,11 +44,11 @@ bookingSchema.pre(/^find/, function (next) {
     this
         .populate({
             path: 'user',
-            select: 'name'
+            select: 'name email'
         })
         .populate({
             path: 'tour',
-            select: 'name slug price imageCover startDates startLocation'
+            select: 'name slug price imageCover startDates startLocation locations'
         });
 
     next();
