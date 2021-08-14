@@ -12,7 +12,12 @@ exports.getCurrentUserReviews = catchAsync(async (req, res, next) => {
     const userId = req.user.id;
 
     // Execute the query
-    const reviews = await Review.find({ user: userId });
+    const reviews = await Review
+        .find({ user: userId })
+        .populate({
+            path: 'tour',
+            select: 'name slug'
+        });
 
     // Send response
     res.status(200).json({
