@@ -7,7 +7,8 @@ const {
     createReview,
     updateReview,
     getReview,
-    deleteReview
+    deleteReview,
+    getCurrentUserReviews
 } = require('./../controllers/reviewController');
 
 // '/api/v1/reviews' & '/api/v1/tours/:tourId/reviews' (nested route)
@@ -26,5 +27,8 @@ router.route('/:id')
     .get(getReview)
     .patch(restrictTo('user', 'admin'), updateReview)
     .delete(restrictTo('user', 'admin'), deleteReview);
+
+router.route('/users/me')
+    .get(protect, getCurrentUserReviews)
 
 module.exports = router;
