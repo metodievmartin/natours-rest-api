@@ -5,6 +5,7 @@ const Booking = require('./../models/bookingModel');
 const catchAsync = require("../utils/catchAsync");
 const factory = require("./handlerFactory");
 const AppError = require("../utils/AppError");
+const APIFeatures = require("../utils/apiFeatures");
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     // 1) Get the currently booked tour
@@ -62,6 +63,30 @@ exports.createBookingCheckout = catchAsync(async (req, res, next) => {
     const url = req.originalUrl.split('?')[0];
 
     res.redirect(url);
+});
+
+exports.getCurrentUserBookings = catchAsync(async (req, res, next) => {
+    const userId = req.user.id;
+
+    // Build the query
+    const features = new APIFeatures(Booking.find({ user: userId }), req.query);
+    features
+        .filter()
+        .sort()
+        .limitFields()
+        .paginate();
+
+    // Execute the query
+    const bookings = await features.query;
+
+    // Send response
+    res.status(200).json({
+        status: 'success',
+        results: bookings.length,
+        data: {
+            data: bookings
+        }
+    });
 });
 
 exports.createBooking = factory.createOne(Booking);
